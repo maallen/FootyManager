@@ -21,7 +21,7 @@ public class Player {
 		this.attributes = attributes;
 	}
 	
-	public static Map<String, Integer> generateAttributesMap(Position playersPosition){
+	public static final Map<String, Integer> generateAttributesMap(Position playersPosition){
 		Map<String, Integer> attributeMap = new HashMap<String, Integer>();
 		Attribute[] attributes = Attribute.values();
 		for(Attribute attribute: attributes){
