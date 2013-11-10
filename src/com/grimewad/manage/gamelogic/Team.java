@@ -12,6 +12,7 @@ public class Team implements Comparable<Team>{
 	private int goalsScored = 0;
 	private int goalsConceded = 0;
 	private List<Player> players;
+	private List<Team> fixtureList;
 	
 	public Team(String name, List<Player> players){
 		this.name = name;
@@ -118,28 +119,60 @@ public class Team implements Comparable<Team>{
 
 	@Override
 	public int compareTo(Team another) {
-		final int GREATER = 1;
-		final int LESSER = -1;
+		
+		final int GREATER_THAN = 1;
+		final int LESS_THAN = -1;
 		final int EQUAL = 0;
+		
 		if (this.calculatePoints() > another.calculatePoints()){
-			return GREATER;
+			return GREATER_THAN;
 		}
 		else if (this.calculatePoints() == another.calculatePoints()){
-			if (this.calculateGoalDiff() > another.calculateGoalDiff())
-				return GREATER;
+			if (this.calculateGoalDiff() > another.calculateGoalDiff()){
+				return GREATER_THAN;
+			}	
 			else if (this.calculateGoalDiff() == another.calculateGoalDiff()){
-				if(this.goalsScored > another.goalsScored){
-					return GREATER;
+				if(getGoalsScored() > another.getGoalsScored()){
+					return GREATER_THAN;
 				}
-				else if (this.goalsScored == another.goalsScored){
+				else if (getGoalsScored() == another.getGoalsScored()){
 					return EQUAL;
 				}
 				else{
-					return LESSER;
+					return LESS_THAN;
 				}
 			}
 		}
-		return LESSER;
+		return LESS_THAN;
+	}
+	
+	public void win(int goalsScored, int goalsConceded){
+		gamesPlayed++;
+		gamesWon++;
+		this.goalsScored += goalsScored;
+		this.goalsConceded += goalsConceded;
+	}
+	
+	public void draw(int goalsScored, int goalsConceded){
+		gamesPlayed++;
+		gamesDrawn++;
+		this.goalsScored += goalsScored;
+		this.goalsConceded += goalsConceded;
+	}
+	
+	public void lose(int goalsScored, int goalsConceded){
+		gamesPlayed++;
+		gamesLost++;
+		this.goalsScored += goalsScored;
+		this.goalsConceded += goalsConceded;
+	}
+	
+	public List<Team> getFixtureList(){
+		return fixtureList;
+	}
+	
+	public void setFixturesList(List<Team> fixtureList){
+		this.fixtureList = fixtureList;
 	}
 
 }
