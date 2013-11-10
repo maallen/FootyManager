@@ -4,6 +4,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.grimewad.manage.gamelogic.enums.Attribute;
+import com.grimewad.manage.gamelogic.enums.Injury;
+import com.grimewad.manage.gamelogic.enums.PassOutcome;
+import com.grimewad.manage.gamelogic.enums.PlayerRating;
+import com.grimewad.manage.gamelogic.enums.Position;
+import com.grimewad.manage.gamelogic.enums.TackleOutcome;
+
 public class Player {
 	
 	private int age;
@@ -13,19 +20,24 @@ public class Player {
 	private boolean injured = false;
 	private Injury injury;
 	private int rehabWeeksLeft = 0;
+	private PlayerRating playerRating;
 	
-	public Player(String name, int age, List<Position> position, Map<String, Integer> attributes){
+	public Player(String name, int age, List<Position> position, PlayerRating playerRating){
 		this.name = name;
 		this.age = age;
 		this.positions = position;
-		this.attributes = attributes;
+		this.playerRating = playerRating;
+		this.attributes = generateAttributesMap(this);
 	}
 	
-	public static final Map<String, Integer> generateAttributesMap(Position playersPosition){
+	public static final Map<String, Integer> generateAttributesMap(Player player){
 		Map<String, Integer> attributeMap = new HashMap<String, Integer>();
 		Attribute[] attributes = Attribute.values();
 		for(Attribute attribute: attributes){
-			int randomRating = 1 + (int)(Math.random()* 20);
+			int randomRating = (0 + (int)(Math.random()* 20)) + player.getPlayerRating().getRatingBonus();
+			if (randomRating > 20){
+				randomRating = 20;
+			}
 			attributeMap.put(attribute.toString(), randomRating);
 		}
 		return attributeMap;
@@ -78,6 +90,10 @@ public class Player {
 	
 	public TackleOutcome tackle(Player playerInPossession){
 		return TackleOutcome.WON_POSSESSION;
+	}
+	
+	public PlayerRating getPlayerRating(){
+		return playerRating;
 	}
 
 }

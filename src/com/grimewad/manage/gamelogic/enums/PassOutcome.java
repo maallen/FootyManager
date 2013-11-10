@@ -1,4 +1,4 @@
-package com.grimewad.manage.gamelogic;
+package com.grimewad.manage.gamelogic.enums;
 
 public enum PassOutcome {
 	SUCCESSFUL("Successful"), INTERCEPTED("Intercepted"), THROW_IN("Throw in"), CORNER_KICK("Corner kick");

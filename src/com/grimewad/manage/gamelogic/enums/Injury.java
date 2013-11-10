@@ -1,4 +1,4 @@
-package com.grimewad.manage.gamelogic;
+package com.grimewad.manage.gamelogic.enums;
 
 public enum Injury {
 	HAMSTRING_STRAIN("Hamstring strain", 3), HAMSTRING_TEAR("Hamstring tear", 5), 

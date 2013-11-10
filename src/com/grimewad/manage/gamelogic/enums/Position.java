@@ -1,4 +1,4 @@
-package com.grimewad.manage.gamelogic;
+package com.grimewad.manage.gamelogic.enums;
 
 public enum Position {
 	

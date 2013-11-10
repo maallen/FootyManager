@@ -1,4 +1,4 @@
-package com.grimewad.manage.gamelogic;
+package com.grimewad.manage.gamelogic.enums;
 
 public enum PlayerRating {
 	
@@ -6,11 +6,19 @@ public enum PlayerRating {
 	AVERAGE("Average", 5), POOR("Poor", 3), AWFUL("Awful", 1);
 	
 	private String rating;
-	private int multiplier;
+	private int ratingBonus;
 	
 	private PlayerRating(String rating, int multiplier){
 		this.rating = rating;
-		this.multiplier = multiplier;
+		this.ratingBonus = multiplier;
+	}
+	
+	public int getRatingBonus(){
+		return ratingBonus;
+	}
+	
+	public String toString(){
+		return rating;
 	}
 
 }
