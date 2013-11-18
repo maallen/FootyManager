@@ -5,13 +5,16 @@ public class Manager {
 	private String name;
 	private Team team;
 	
-	public Manager(String name, Team team){
+	public Manager(String name){
 		this.name = name;
-		this.team = team;
 	}
 	
 	public String getName(){
 		return name;
+	}
+	
+	public void setTeam(Team team){
+		this.team = team;
 	}
 	
 	public Team getTeam(){
@@ -19,6 +22,7 @@ public class Manager {
 	}
 	
 	public void resign(){
+		team.removeManager();
 		team = null;
 	}
 

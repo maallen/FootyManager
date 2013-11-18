@@ -13,6 +13,8 @@ public class Team implements Comparable<Team>{
 	private int goalsConceded = 0;
 	private List<Player> players;
 	private List<Team> fixtureList;
+	private Manager manager;
+	private boolean isAvailable = true;
 	
 	public Team(String name, List<Player> players){
 		this.name = name;
@@ -173,6 +175,28 @@ public class Team implements Comparable<Team>{
 	
 	public void setFixturesList(List<Team> fixtureList){
 		this.fixtureList = fixtureList;
+	}
+
+
+	public Manager getManager() {
+		return manager;
+	}
+
+
+	public boolean isAvailable() {
+		return isAvailable;
+	}
+
+
+	public void setManager(Manager manager) {
+		this.manager = manager;
+		isAvailable = false;
+	}
+
+
+	public void removeManager() {
+		this.manager = null;
+		isAvailable = true;
 	}
 
 }
