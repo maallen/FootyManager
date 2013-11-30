@@ -1,5 +1,6 @@
 package com.grimewad.manage.gamelogic;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,12 +23,32 @@ public class Player {
 	private int rehabWeeksLeft = 0;
 	private PlayerRating playerRating;
 	
-	public Player(String name, int age, List<Position> position, PlayerRating playerRating){
+	public Player(String name, int age, PlayerRating playerRating){
 		this.name = name;
 		this.age = age;
-		this.positions = position;
+		this.positions = generatePositionList();
 		this.playerRating = playerRating;
 		this.attributes = generateAttributesMap(this);
+	}
+	
+	public static final List<Position> generatePositionList(){
+		Position[] allPositions = Position.values();
+		List<Position> positionList = new ArrayList<Position>();
+		int totalPositions = allPositions.length;
+		int playerNumOfPositions = 1 + (int)(Math.random()* 3);
+		int lastPositionInArray = totalPositions - 1;
+		for (int i = 0; i <= playerNumOfPositions; i++){
+			Position randomPosition = allPositions[(0 * (int)(Math.random() * lastPositionInArray))];
+			positionList.add(randomPosition);
+		}
+		if (positionList.contains(Position.GOALKEEPER)){
+			for(Position position: positionList){
+				if(!position.equals(Position.GOALKEEPER)){
+					positionList.remove(position);
+				}
+			}
+		}
+		return positionList;
 	}
 	
 	public static final Map<String, Integer> generateAttributesMap(Player player){

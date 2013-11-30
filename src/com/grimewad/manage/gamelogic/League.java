@@ -22,7 +22,7 @@ public class League {
 	private void createTeams(List<String> teamNames){
 		for(String teamName: teamNames){
 			List<Player> players = new ArrayList<Player>(); // TODO: create random list of players
-			Team team = new Team(teamName, players);
+			Team team = new Team(teamName);
 			teams.add(team);
 		}
 	}
@@ -33,8 +33,7 @@ public class League {
 		while (iterator.hasNext()){
 			Manager manager = iterator.next();
 			String teamName = teamNames.get(manager);
-			List<Player> players = new ArrayList<Player>(); // TODO: create random list of players
-			Team team = new Team(teamName, players);
+			Team team = new Team(teamName);
 			team.setManager(manager);
 			teams.add(team);
 		}

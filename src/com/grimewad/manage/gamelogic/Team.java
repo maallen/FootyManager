@@ -1,6 +1,9 @@
 package com.grimewad.manage.gamelogic;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import com.grimewad.manage.gamelogic.enums.PlayerRating;
 
 public class Team implements Comparable<Team>{
 	
@@ -16,9 +19,25 @@ public class Team implements Comparable<Team>{
 	private Manager manager;
 	private boolean isAvailable = true;
 	
-	public Team(String name, List<Player> players){
+	public Team(String name){
 		this.name = name;
-		this.players = players;
+		this.players = generateSquad();
+	}
+	
+	public static final List<Player> generateSquad(){
+		List<Player> players = new ArrayList<Player>();
+		int i = 1;
+		String name = "Player ";
+		PlayerRating[] ratings = PlayerRating.values();
+		int ratingsSize = ratings.length;
+		while(i <= 23){
+			PlayerRating rating = ratings[0 + (int)(Math.random() * (ratingsSize - 1))];
+			int randomAge = 17 + (int)(Math.random() * 37);
+			Player player = new Player(name+i, randomAge, rating);
+			players.add(player);
+			i++;
+		}
+		return players;
 	}
 	
 
@@ -43,7 +62,6 @@ public class Team implements Comparable<Team>{
 	public void setGamesWon(int gamesWon) {
 		this.gamesWon = gamesWon;
 	}
-
 
 
 	public int getGamesLost() {
